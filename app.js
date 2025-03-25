@@ -1,10 +1,12 @@
-require("./xyz.js"); //call one module into another module (Common JS module pattern)
+require("./xyz.js"); //call one module into another module (Common JS module format)
 
-//const {x, calculateSum} = require("./calculate/sum.js"); //even without giving extension the file name can be written inside the require() function
+//const {x, calculateSum} = require("./calculate/sum"); //even without giving extension the file name can be written inside the require() function
 
-//import {x,calculateSum} from "./sum.js"; //importing by ES module pattern
+//import {x,calculateSum} from "./sum.js"; //importing by ES module format
 
 //const {calculateMultiply} = require("./calculate/multiply.js");
+
+const util = require("node:util");
 
 const {x, calculateSum, calculateMultiply} = require("./calculate");
 
