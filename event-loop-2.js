@@ -1,3 +1,12 @@
+/**
+ * a = 100
+ * Last line of the file
+ * process.nextTick
+ * Promise callback
+ * Call now
+ * setImmmediate
+ * File read CB
+ */
 const fs =  require("fs");
 let a = 100;
 //executed during the check phase of the Event loop
@@ -11,8 +20,8 @@ Promise.resolve().then(() => {
 });
 
 //executed during the poll phase of the Event loop
-fs.readFile("./file.txt", "utf8", (err, data) => {
-    console.log("File data : ", data);
+fs.readFile("./file.txt", "utf8", () => {
+    console.log("File read CB");
 });
 
 //executed during the timer phase of the Event loop
@@ -28,7 +37,7 @@ process.nextTick(() => {
 //synchronous code executed in the call stack of the main thread
 function printA()
 {
-    console.log("a = ",a);
+    console.log("a =",a);
 }
 //synchronous code executed in the call stack of the main thread
 printA();

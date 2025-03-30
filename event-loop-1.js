@@ -1,3 +1,10 @@
+/**
+ * a =100
+ * Last line of the file
+ * Call now
+ * setImmediate
+ * File read CB
+ */
 const fs = require("fs");
 let a = 100;
 
@@ -5,8 +12,8 @@ setImmediate(() => {
     console.log("setImmediate");
 });
 
-fs.readFile("./file.txt", "utf8", (err, data) => {
-    console.log("File data : ", data);
+fs.readFile("./file.txt", "utf8", () => {
+    console.log("File read CB");
 });
 
 setTimeout(() => {

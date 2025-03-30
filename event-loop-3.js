@@ -1,3 +1,14 @@
+/* Dry run output
+* Last line of file
+* nextTick
+* Promise
+* Timer expired
+* setImmediate
+* File reading CB
+* 2nd nextTick
+* 2nd setImmediate
+* 2nd timer
+*/
 const fs = require("fs");
 
 setImmediate(() => {
