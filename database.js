@@ -17,31 +17,48 @@ async function connecttoDB(){
     const db = client.db(dbName);
     const collection = db.collection("User");
 
-    //Inserting document
     const data = {
         firstname: "Shah Rukh",
         lastname: "Khan",
         city: "Mumbai",
         phoneNumber: "884631120"
     }
-    // const insertDocument = await collection.insertMany([data]);
-    // console.log("Document inserted =>", insertDocument);
+    try{
+        // Adding a document to a collection
+        const insertDocument = await collection.insertMany([data]);
+        console.log("Document inserted =>", insertDocument);
 
-    const insrtOneDocument = await collection.insertOne(data);
-    console.log("Document inserted =>", insrtOneDocument);
+        const insrtOneDocument = await collection.insertOne(data);
+        console.log("Document inserted =>", insrtOneDocument);
 
-    //Finding all the documents. It is mandatory to add toArray() at the end of find() function
-    const findResult = await collection.find({}).toArray();
-    console.log("Found documents are :", findResult);
+        //Finding all the documents in a collection. It is mandatory to add toArray() at the end of find() function
+        const findResult = await collection.find({}).toArray();
+        console.log("Found documents are :", findResult);
 
-    //Finding count of all documents
-    const count = await collection.countDocuments({});
-    console.log("Count of documents :", count);
+        //Finding count of all documents in a collection.
+        const count = await collection.countDocuments({});
+        console.log("Total number of documents :", count);
 
-    //Finding a specific document. It is mandatory to add toArray() at the end of find() function
-    const findParticularDocument = await collection.find({firstname: "Katrina"}).toArray();
-    console.log("Record is :", findParticularDocument);
-    
+        //Finding a specific document from a collection. It is mandatory to add toArray() at the end of find() function
+        const findParticularDocument = await collection.find({firstname: "Katrina"}).toArray();
+        const countOfDocument = await collection.countDocuments({firstname: "Shah Rukh"});
+        console.log("Record is :", findParticularDocument);
+        console.log("Number of document found is :", countOfDocument);
+
+        //Update a document with condition in a collection.
+        const updateDocument = await collection.updateOne({firstname : "Shah Rukh", city : "Mumbai"}, 
+            {$set : {city: "Delhi"}});
+        console.log("Updated result :", updateDocument);
+        
+        //Delete a document with condition from a collection.
+        const deleteDocument = await collection.deleteOne({firstname : 'Shah Rukh', city : 'Mumbai'});
+        console.log("Document deleted successfully", deleteDocument);
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+   
     return('done');
 }
 
